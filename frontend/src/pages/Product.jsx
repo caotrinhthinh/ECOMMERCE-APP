@@ -20,6 +20,9 @@ const Product = () => {
   };
 
   useEffect(() => {
+    setImage("");
+    setSize("");
+    window.scrollTo(0, 0);
     fetchProductData();
   }, [productId]);
 
