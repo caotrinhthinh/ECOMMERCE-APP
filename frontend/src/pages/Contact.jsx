@@ -31,6 +31,7 @@ const Contact = () => {
           </button>
         </div>
       </div>
+
       <NewsletterBox />
     </div>
   );
