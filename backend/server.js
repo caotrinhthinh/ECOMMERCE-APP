@@ -2,15 +2,18 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import connectDB from "./config/mongodb.js";
-import connectCloudinary from "./config/cloudinary.js";
+import cloudinary from "./config/cloudinary.js";
 import userRouter from "./routes/userRoute.js";
 import productRouter from "./routes/productRoute.js";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 // App Config
 const app = express();
 const port = process.env.PORT || 4000;
+
 connectDB();
-connectCloudinary();
 
 // middlewares
 app.use(express.json()); // parse body JSON
@@ -27,3 +30,5 @@ app.get("/", (req, res) => {
 app.listen(port, () => {
   console.log("Server started om PORT: " + port);
 });
+
+console.log("🕒 Server Time:", new Date().toISOString());
