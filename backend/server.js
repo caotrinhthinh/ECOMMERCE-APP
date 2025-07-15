@@ -12,18 +12,18 @@ dotenv.config();
 // App Config
 const app = express();
 const port = process.env.PORT || 4000;
-app.use(
-  cors({
-    origin: "http://localhost:5174",
-    credentials: true,
-  })
-);
 
 connectDB();
 
 // middlewares
 app.use(express.json()); // parse body JSON
-app.use(cors());
+// app.use(cors());
+app.use(
+  cors({
+    origin: ["http://localhost:5174", "http://localhost:5173"],
+    credentials: true,
+  })
+);
 
 // api endpoints
 app.use("/api/user", userRouter);
