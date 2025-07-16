@@ -10,18 +10,19 @@ const Cart = () => {
   const [cartData, setCartData] = useState([]);
 
   useEffect(() => {
-    const tempData = Object.entries(cartItems).flatMap(([productId, sizes]) =>
-      Object.entries(sizes)
-        .filter(([size, qty]) => qty > 0)
-        .map(([size, qty]) => ({
-          _id: productId,
-          size,
-          quantity: qty,
-        }))
-    );
-
-    setCartData(tempData);
-  }, [cartItems]);
+    if (products.length) {
+      const tempData = Object.entries(cartItems).flatMap(([productId, sizes]) =>
+        Object.entries(sizes)
+          .filter(([size, qty]) => qty > 0)
+          .map(([size, qty]) => ({
+            _id: productId,
+            size,
+            quantity: qty,
+          }))
+      );
+      setCartData(tempData);
+    }
+  }, [cartItems, products]);
 
   return (
     <div className="border-t pt-14">
@@ -38,7 +39,7 @@ const Cart = () => {
           return (
             <div
               key={index}
-              className="py-4 border-t border-b text-gray-700 grid grid-cols[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.2fr] items-center gap-4"
+              className="py-4 border-t border-b text-gray-700 grid grid-cols-[4fr_0.5fr_0.5fr] sm:grid-cols-[4fr_2fr_0.2fr] items-center gap-4"
             >
               <div className="flex items-start gap-6">
                 <img className="w-16 sm:w-20" src={productData.image[0]} />
